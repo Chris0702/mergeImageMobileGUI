@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/stylesheets/uploadMergeImage.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/stylesheets/uploadMergeImage.css"> -->
+    <!-- jQuery文件 -->
+    <script src="/scripts/jQuery3.3.1.js"></script>
+    <script src="/scripts/uploadMergeImage.js"></script>
+</head>
+
+<body>
+    <form id="uploadForm" class="form-horizontal" enctype="multipart/form-data" action="/file/uploadMergeImage" method="post">
+        <input type="file" id="uploadImage" name="uploadImage">
+        <div id = "uploadDiv">
+            <label for="fileName">檔案名稱:</label> 
+            <br>
+            <input id="fileName" type="text" class="form-control" readonly>
+            <br>
+            <input type="button" value="開啟檔案" class="btn btn-success" onclick="this.form.uploadImage.click();">
+            <input type="submit" value="upload" class="btn btn-success" name="submit">
+        <!-- <input type="button" value="開啟檔案" class="uploadBtn" onclick="this.form.uploadImage.click();">
+        <input type="submit" value="upload" class="uploadBtn" name="submit"> -->
+      </div>
+    <font id="tip"></font>
+    </form>
+</body>
+
+</html>
