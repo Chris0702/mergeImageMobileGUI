@@ -46,18 +46,22 @@ function responseFunc(functionType, result){
 
 		$('#introduction').on('click',function(){
 			console.log("introduction  click")
+			callNativeInterface.changePage("introduction");
 		});
 
 		$('#mergeImage').on('click',function(){
 			console.log("mergeImage  click")
+			callNativeInterface.changePage("mergeImage");
 		});
 
 		$('#upload').on('click',function(){
 			console.log("upload  click")
+			callNativeInterface.changePage("upload");
 		});
 
 		$('#about').on('click',function(){
 			console.log("about  click")
+			callNativeInterface.changePage("about");
 		});
 	};
 
