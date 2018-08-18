@@ -18,7 +18,7 @@ $(document).ready(function() {
 });
 
 function init(){
-    console.log("introduction init")
+    console.log("about init")
     // $('#top').css('height','20%');
     // $('#bottom').css('height','calc(80% - 5vh)');
     // $('#bottom').css('margin','auto');
