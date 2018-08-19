@@ -3,25 +3,40 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="/stylesheets/bootstrap-3.3.7/css/bootstrap.min.css">
-    <script src="/scripts/jQuery3.3.1.js"></script>
-    <script src="/scripts/mergeImage.js"></script>
+    <link rel="stylesheet" href="../styles/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../styles/mergeImage.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./styles/commonStyle.css" />
+<link rel="stylesheet" type="text/css" href="./styles/loginAction.css" /> -->
+    <script type="text/javascript" src="../scripts/lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../scripts/page/mergeImage.js"></script>
 </head>
 
-<body style="overflow-x: hidden;">
-   <!--  <div>
-    <p>請選擇圖片</p>
-    	<button id = "nextStep" class="btn btn-success">下一步</button>
-    </div> -->
+<script type="text/javascript">
+$(document).ready(function(){
+    mergeImage.init();
+    // mergeImage.initButton();
+    // mergeImage.initImage();
+    // loginAction.drawBackground();
+    // //$(window).on('resize',loginAction.drawBackground);
+    // loginAction.init();
+});
 
+</script>
+
+<body style="overflow-x: hidden;">
+    <!--  <div>
+    <p>請選擇圖片</p>
+        <button id = "nextStep" class="btn btn-success">下一步</button>
+    </div> -->
     <div class="row">
         <div id=question class="col-xs-6">
         </div>
         <div id=next class="col-xs-6">
-            <button id = "nextStep" class="btn btn-success">下一步</button>
+            <button id="nextStep" class="btn btn-success">下一步</button>
         </div>
     </div>
-    <div id = "content">
+    <div id="content">
     </div>
 </body>
+
 </html>
