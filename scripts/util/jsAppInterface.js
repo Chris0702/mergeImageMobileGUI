@@ -12,6 +12,21 @@
 
     jsAppInterface.insertLanguage = "";
 
+    jsAppInterface.setMergeImageAll = function(result){
+        if(typeof responseFunc == 'function'){
+            //result = decodeURIComponent(window.atob(result));
+            //var cbObj = {};
+            //cbObj.lang = lang;
+            try{
+                var resultObj = JSON.parse(result);
+                responseFunc('setMergeImageAll',resultObj);    
+            }catch(error){
+                responseFunc('error',error.message); 
+            }
+            
+        }
+    };
+
     jsAppInterface.insertLanguage = function(result){
         if(typeof responseFunc == 'function'){
             //result = decodeURIComponent(window.atob(result));

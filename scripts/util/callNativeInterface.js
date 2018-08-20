@@ -29,7 +29,16 @@
     }else{
         callIosNativeApp('changePage', cbJsonStr);
     }
+  };
 
+  callNativeInterface.getMergeImageAllSrc = function(){
+    console.log('!!!!!!!!!!!!!getMergeImageAllSrc!!!!!!!!!!!!!!!!');
+    if(typeof(appJsInterface) != 'undefined'){
+      console.log('!!!!!!!!!!!!!getMergeImageAllSrc!!!!!!appJsInterface!!!!!!!!!!');
+      appJsInterface.getMergeImageAllSrc();
+    }else{
+        // callIosNativeApp('changePage', );
+    }
   };
 
 

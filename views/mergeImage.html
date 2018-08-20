@@ -9,10 +9,11 @@
 <link rel="stylesheet" type="text/css" href="./styles/loginAction.css" /> -->
     <script type="text/javascript" src="../scripts/lib/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="../scripts/page/mergeImage.js"></script>
+    <script type="text/javascript" src="../scripts/util/callNativeInterface.js"></script>
+    <script type="text/javascript" src="../scripts/util/jsAppInterface.js"></script>
 </head>
-
 <script type="text/javascript">
-$(document).ready(function(){
+$(document).ready(function() {
     mergeImage.init();
     // mergeImage.initButton();
     // mergeImage.initImage();
@@ -20,21 +21,16 @@ $(document).ready(function(){
     // //$(window).on('resize',loginAction.drawBackground);
     // loginAction.init();
 });
-
 </script>
 
 <body style="overflow-x: hidden;">
-    <!--  <div>
-    <p>請選擇圖片</p>
-        <button id = "nextStep" class="btn btn-success">下一步</button>
-    </div> -->
-    <div class="row">
-        <div id=question class="col-xs-6">
+    <div id=question class="col-xs-6 col-sm-6">
         </div>
-        <div id=next class="col-xs-6">
+    <div id=next class="col-xs-6 col-sm-6">
             <button id="nextStep" class="btn btn-success">下一步</button>
         </div>
-    </div>
+    </br>
+    </br>
     <div id="content">
     </div>
 </body>

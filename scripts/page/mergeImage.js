@@ -1,29 +1,12 @@
 function responseFunc(functionType, result) {
-    //var resultObj = JSON.parse(result);
-    // var resultObj = result;
-    // if(functionType == 'insertProjectList'){
-    // 	loginAction.insertProjectList(resultObj);
-    // }
-    // else if(functionType == 'insertAccountHistoryList'){
-    // 	loginAction.insertAccountHistoryList(resultObj);
-    // }
-    // else if(functionType == 'cbAccountLogin'){
-    // 	loginAction.successGotoHome(resultObj);
-    // }
-    // else if(functionType == 'insertProjectList'){
-    // 	loginAction.insertProjectList(resultObj);
-    // }
-    // else if(functionType == 'insertLanguage'){
-    // 	if(localStorage.getItem('langJs') != resultObj.lang){
-    // 		dashboardMui.initLanguage(resultObj.lang);
-    // 		dashboardMui.muiFunctions.run();
-    // 	}
-    // }
-    // else if(functionType == 'error'){
-    // 	console.log('----------------------error');
-    // 	console.log(resultObj);
-    // }
-    // else{}
+    // var resultObj = JSON.parse(result);
+    var resultObj = result;
+    if (functionType == 'setMergeImageAll') {
+        mergeImage.setMergeImageAll(resultObj);
+    } else if (functionType == 'error') {
+        console.log('----------------------error');
+        console.log(resultObj);
+    } else {}
 };
 
 
@@ -47,6 +30,7 @@ function responseFunc(functionType, result) {
 
         $('#question').html('請選擇多張圖片作為基底');
         initButton();
+        initImage();
         // initImage();
         // $('#projArea,#userArea,#pwdArea,#rememberMeArea,#loginArea').hide();
         // $('#top').css('height','50%');
@@ -79,10 +63,29 @@ function responseFunc(functionType, result) {
 
     };
 
-   
+
 
     mergeImage.changePage = function(pageName) {
         callNativeInterface.changePage(pageName);
+    };
+
+    mergeImage.setMergeImageAll = function(resultObj) {
+        // callNativeInterface.changePage(pageName);
+        var imgArr = resultObj.imgArr;
+        var serverUrl = resultObj.serverUrl
+        // console.log("#########imgArr#########")
+        //  console.log(imgArr)
+        //  console.log("#########serverUrl#########")
+        //  console.log(serverUrl)
+        //   console.log("##################")
+        for (i in imgArr) {
+        	imgArr[i] = serverUrl+'/'+imgArr[i];
+            createImgBlock(imgArr[i], i);
+
+        }
+         console.log("#########imgArr#########")
+         console.log(imgArr)
+        imageClickInit();
     };
 
     function initButton() {
@@ -132,25 +135,27 @@ function responseFunc(functionType, result) {
     };
 
     function initImage() {
-        $.ajax({
-            url: '/file/getLocalPathAll',
-            type: 'GET',
-            data: {
-                foldername: 'mergeImage'
-            },
-            error: function(xhr) {
-                alert('圖片讀取錯誤，請重新載入');
-            },
-            success: function(imgArr) {
-                // console.log('success       imgArr  ')
-                // console.log(imgArr)
-                for (i in imgArr) {
-                    createImgBlock(imgArr[i], i)
+        // console.log(callNativeInterface)
+        callNativeInterface.getMergeImageAllSrc();
+        // $.ajax({
+        //     url: '/file/getLocalPathAll',
+        //     type: 'GET',
+        //     data: {
+        //         foldername: 'mergeImage'
+        //     },
+        //     error: function(xhr) {
+        //         alert('圖片讀取錯誤，請重新載入');
+        //     },
+        //     success: function(imgArr) {
+        //         // console.log('success       imgArr  ')
+        //         // console.log(imgArr)
+        //         for (i in imgArr) {
+        //             createImgBlock(imgArr[i], i)
 
-                }
-                imageClickInit();
-            }
-        });
+        //         }
+        //         imageClickInit();
+        //     }
+        // });
     }
 
     function createImgBlock(imgSrc, blockIndex) {
@@ -163,7 +168,7 @@ function responseFunc(functionType, result) {
         // console.log(imgSrc)
         var img = $('<img />', {
             id: imgSrc,
-            src: '/' + imgSrc,
+            src: imgSrc,
             width: '150px',
             height: '200px',
             class: 'mergeImage',
