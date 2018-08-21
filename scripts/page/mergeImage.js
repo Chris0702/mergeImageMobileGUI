@@ -1,7 +1,9 @@
 function responseFunc(functionType, result) {
     // var resultObj = JSON.parse(result);
     var resultObj = result;
-    if (functionType == 'setMergeImageAll') {
+    if (functionType == 'setMergeImageResult') {
+        mergeImage.setMergeImageResult(resultObj);
+    } else if (functionType == 'setMergeImageAll') {
         mergeImage.setMergeImageAll(resultObj);
     } else if (functionType == 'error') {
         console.log('----------------------error');
@@ -69,22 +71,25 @@ function responseFunc(functionType, result) {
         callNativeInterface.changePage(pageName);
     };
 
+    mergeImage.setMergeImageResult = function(resultObj) {
+        var result = resultObj.result;
+        var serverUrl = resultObj.serverUrl
+        result = serverUrl + '/' + result;
+        showMergeImage(result);
+        addDownloadBtn();
+    };
+
     mergeImage.setMergeImageAll = function(resultObj) {
         // callNativeInterface.changePage(pageName);
         var imgArr = resultObj.imgArr;
         var serverUrl = resultObj.serverUrl
-        // console.log("#########imgArr#########")
-        //  console.log(imgArr)
-        //  console.log("#########serverUrl#########")
-        //  console.log(serverUrl)
-        //   console.log("##################")
         for (i in imgArr) {
-        	imgArr[i] = serverUrl+'/'+imgArr[i];
+            imgArr[i] = serverUrl + '/' + imgArr[i];
             createImgBlock(imgArr[i], i);
 
         }
-         console.log("#########imgArr#########")
-         console.log(imgArr)
+        console.log("#########imgArr#########")
+        console.log(imgArr)
         imageClickInit();
     };
 
@@ -108,39 +113,59 @@ function responseFunc(functionType, result) {
                 if (targetImg == '') {
                     alert("請選擇欲合成的圖片");
                 } else {
-                    // $.ajax({
-                    //     url: '/exe/mergeImage',
-                    //     type: 'POST',
-                    //     data: {
-                    //         mergeImgArr: mergeImgArr,
-                    //         targetImg: targetImg
-                    //     },
-                    //     error: function(xhr) {
-                    //         alert('connect error');
-                    //     },
-                    //     success: function(res) {
-                    //         res = JSON.parse(res);
-                    //         if (res.resStatus == 0) {
-                    //             showMergeImage(res.resString);
-                    //             addDownloadBtn();
-                    //         } else {
-                    //             alert('merge error');
-                    //         }
-                    //     }
-                    // });
-                    // mergeImageExe()
-
-                    callNativeInterface.mergeImageExe(mergeImgArr,targetImg);
-
+                    callNativeInterface.mergeImageExe(mergeImgArr, targetImg);
                     step = 0;
                 }
             }
         })
     };
 
-    function mergeImageExe(){
-      
+    function showMergeImage(imgSrc) {
+        resultPath = imgSrc;
+        $('#content').children().remove();
+        $('#question').remove();
+        $('#next').remove();
+        imgBlockId = 'mergeImageResultBlock';
+        var div = $('<div/>', {
+            id: imgBlockId,
+            class: 'thumbnail col-md-12'
+        }).appendTo($('#content'));;
+        var img = $('<img />', {
+            id: imgSrc,
+            src:  imgSrc,
+             width: '350px',
+            height: '450px',
+            class: 'mergeImage',
+            value: ''
+        }).appendTo($('#' + imgBlockId));
     }
+
+    function addDownloadBtn() {
+        $('<div/>', {
+            class: 'col-md-3'
+        }).appendTo($('#content'));
+        var button = $('<button/>', {
+            id: 'downloadResult',
+            class: 'col-md-6 btn btn-success'
+        }).appendTo($('#content'));;
+        $('#downloadResult').html('DOWNLOAD');
+        $('#downloadResult').click(function(e) {
+            downloadImage(resultPath);
+        })
+        $('<div/>', {
+            class: 'col-md-3'
+        }).appendTo($('#content'));
+    }
+
+    function downloadImage(src) {
+    // src = '/' + src;
+    // console.log('============src=============');
+    // console.log(src)
+    // console.log('=========================');
+    var $a = $("<a></a>").attr("href", src).attr("download", src);
+    $a[0].click();
+}
+
 
     function initImage() {
         // console.log(callNativeInterface)
