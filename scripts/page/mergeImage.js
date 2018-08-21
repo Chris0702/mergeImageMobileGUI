@@ -108,31 +108,39 @@ function responseFunc(functionType, result) {
                 if (targetImg == '') {
                     alert("請選擇欲合成的圖片");
                 } else {
-                    $.ajax({
-                        url: '/exe/mergeImage',
-                        type: 'POST',
-                        data: {
-                            mergeImgArr: mergeImgArr,
-                            targetImg: targetImg
-                        },
-                        error: function(xhr) {
-                            alert('connect error');
-                        },
-                        success: function(res) {
-                            res = JSON.parse(res);
-                            if (res.resStatus == 0) {
-                                showMergeImage(res.resString);
-                                addDownloadBtn();
-                            } else {
-                                alert('merge error');
-                            }
-                        }
-                    });
+                    // $.ajax({
+                    //     url: '/exe/mergeImage',
+                    //     type: 'POST',
+                    //     data: {
+                    //         mergeImgArr: mergeImgArr,
+                    //         targetImg: targetImg
+                    //     },
+                    //     error: function(xhr) {
+                    //         alert('connect error');
+                    //     },
+                    //     success: function(res) {
+                    //         res = JSON.parse(res);
+                    //         if (res.resStatus == 0) {
+                    //             showMergeImage(res.resString);
+                    //             addDownloadBtn();
+                    //         } else {
+                    //             alert('merge error');
+                    //         }
+                    //     }
+                    // });
+                    // mergeImageExe()
+
+                    callNativeInterface.mergeImageExe(mergeImgArr,targetImg);
+
                     step = 0;
                 }
             }
         })
     };
+
+    function mergeImageExe(){
+      
+    }
 
     function initImage() {
         // console.log(callNativeInterface)

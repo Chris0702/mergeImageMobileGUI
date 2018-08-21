@@ -41,6 +41,20 @@
     }
   };
 
+  callNativeInterface.mergeImageExe = function(mergeImgArr,targetImg){
+     var cbObj = {};
+    cbObj.mergeImgArr = mergeImgArr;
+    cbObj.targetImg = targetImg;
+    var cbJsonStr = JSON.stringify(cbObj);
+    console.log('!!!!!!!!!!!!!mergeImageExe!!!!!!!!!!!!!!!!');
+    if(typeof(appJsInterface) != 'undefined'){
+      console.log('!!!!!!!!!!!!!mergeImageExe!!!!!!appJsInterface!!!!!!!!!!');
+      appJsInterface.mergeImageExe(cbJsonStr);
+    }else{
+        // callIosNativeApp('changePage', );
+    }
+  };
+
 
   callNativeInterface.inputConnectIP = function(ip,remember){
     console.log('!!!!!!!!!!!!!!inputConnectIP!!!!!!!!!!!!!!!');
