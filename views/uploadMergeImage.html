@@ -3,31 +3,29 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="../styles/uploadMergeImage.css">
-    <!-- Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="../styles/bootstrap-3.3.7/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="/stylesheets/uploadMergeImage.css"> -->
-    <!-- jQuery文件 -->
+    <link rel="stylesheet" type="text/css" href="../styles/uploadMergeImage.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./styles/commonStyle.css" />
+<link rel="stylesheet" type="text/css" href="./styles/loginAction.css" /> -->
     <script type="text/javascript" src="../scripts/lib/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="../scripts/page/uploadMergeImage.js"></script>
-</head>
+    <script type="text/javascript" src="../scripts/util/callNativeInterface.js"></script>
+    <script type="text/javascript" src="../scripts/util/jsAppInterface.js"></script>
 
+</head>
+<script type="text/javascript">
+$(document).ready(function() {
+    uploadMergeImage.init();
+    // mergeImage.initButton();
+    // mergeImage.initImage();
+    // loginAction.drawBackground();
+    // //$(window).on('resize',loginAction.drawBackground);
+    // loginAction.init();
+});
+</script>
 <body>
-    <form id="uploadForm" class="form-horizontal" enctype="multipart/form-data" action="/file/uploadMergeImage" method="post">
-        <input type="file" id="uploadImage" name="uploadImage">
-        <div id = "uploadDiv">
-            <label for="fileName">檔案名稱:</label> 
-            <br>
-            <input id="fileName" type="text" class="form-control" readonly>
-            <br>
-            <input type="button" value="開啟檔案" class="btn btn-success" onclick="this.form.uploadImage.click();">
-            <input type="submit" value="upload" class="btn btn-success" name="submit">
-        <!-- <input type="button" value="開啟檔案" class="uploadBtn" onclick="this.form.uploadImage.click();">
-        <input type="submit" value="upload" class="uploadBtn" name="submit"> -->
-      </div>
+    <input id="selectImageFile" type="button" value="upload" class="btn btn-success">
     <font id="tip"></font>
-    </form>
 </body>
 
 </html>

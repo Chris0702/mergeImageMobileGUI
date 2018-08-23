@@ -18,6 +18,16 @@
     //appJsInterface
   var callNativeInterface = new Object();
 
+  callNativeInterface.selectImageFile = function(){
+    console.log('!!!!!!!!!!!!!selectImageFile!!!!!!!!!!!!!!!!');
+    if(typeof(appJsInterface) != 'undefined'){
+      console.log('!!!!!!!!!!!!!selectImageFile!!!!!!appJsInterface!!!!!!!!!!');
+      appJsInterface.selectImageFile();
+    }else{
+        callIosNativeApp('changePage', cbJsonStr);
+    }
+  };
+
   callNativeInterface.changePage = function(url){
     var cbObj = {};
     cbObj.url = url;
